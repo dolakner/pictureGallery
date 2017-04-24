@@ -1,6 +1,8 @@
-<h1>Editing Pic</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @pic %> |
-<%= link_to 'Back', pics_path %>
+<div class="card">
+  <div class="card-header"><h2>Editing Pic</h2></div>
+  <div class="card-block"><%= render 'form' %></div>
+  <div class="card-footer">
+    <%= link_to 'Show', @pic %> |
+    <%= link_to 'Back', pics_path %>
+  </div>
+</div>

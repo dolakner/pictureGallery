@@ -14,9 +14,11 @@
     <% @pics.each do |pic| %>
       <tr>
         <td><%= pic.description %></td>
-        <td><%= link_to 'Show', pic %></td>
-        <td><%= link_to 'Edit', edit_pic_path(pic) %></td>
-        <td><%= link_to 'Destroy', pic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', pic, class: "btn btn-secondary" %></td>
+        <% if pic.user == current_user %>
+          <td><%= link_to 'Edit', edit_pic_path(pic), class: "btn btn-secondary" %></td>
+          <td><%= link_to 'Destroy', pic, method: :delete, data: { confirm: 'Are you sure?' }, class:  "btn btn-secondary" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

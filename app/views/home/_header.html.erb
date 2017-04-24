@@ -6,13 +6,13 @@
     <%= image_tag "logo.png", class: "logo" %>
   <% end %>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "About", home_about_path, class: "nav-link" %>
-      </li>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item"><%= link_to "About", home_about_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Pics gallery", pics_path, class: "nav-link" %></li>
 
       <% if user_signed_in? %>
-        <li class="nav-item"><%= link_to "Edit", edit_user_registration_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "New pic", new_pic_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %></li>
         <li class="nav-item"><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
       <% else %>
         <li class="nav-item"><%= link_to "Sign in", new_user_session_path , class: "nav-link"%></li>

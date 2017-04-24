@@ -1,30 +1,24 @@
 class PicsController < ApplicationController
   before_action :set_pic, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, expet: [:idex, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
-  # GET /pics
-  # GET /pics.json
   def index
     @pics = Pic.all
   end
 
-  # GET /pics/1
-  # GET /pics/1.json
   def show
   end
 
-  # GET /pics/new
   def new
-    @pic = Pic.new
+    @pic = current_user.pics.build
   end
 
-  # GET /pics/1/edit
   def edit
   end
 
-  # POST /pics
-  # POST /pics.json
   def create
-    @pic = Pic.new(pic_params)
+    @pic = current_user.pics.build(pic_params)
 
     respond_to do |format|
       if @pic.save
@@ -70,5 +64,10 @@ class PicsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pic_params
       params.require(:pic).permit(:description)
+    end
+
+    def correct_user
+      @pic = current_user.pics.find_by(id: params[:id])
+      redirect_to pins_path, notice: "You are not authorized to edit this pic"
     end
 end
