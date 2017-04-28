@@ -1,6 +1,6 @@
 class PicsController < ApplicationController
   before_action :set_pic, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, expet: [:idex, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
@@ -63,11 +63,11 @@ class PicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pic_params
-      params.require(:pic).permit(:description)
+      params.require(:pic).permit(:description, :image)
     end
 
     def correct_user
       @pic = current_user.pics.find_by(id: params[:id])
-      redirect_to pins_path, notice: "You are not authorized to edit this pic"
+      redirect_to pics_path, notice: "You are not authorized to edit this pic"
     end
 end
