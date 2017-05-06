@@ -77,15 +77,15 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'obrazkowo.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'picture-galleryx.herokuapp.com' }
 
   config.paperclip_defaults = {
     storage: :s3,
-    s3_region: ENV['AWS_REGION'],
     s3_credentials: {
-      bucket: ENV['AWS_BUCKET'],
+      bucket: ENV['S3_BUCKET-NAME'],
       access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      s3_region: ENV['AWS_REGION']
     }
   }
 end
